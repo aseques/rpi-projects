@@ -88,6 +88,8 @@ def parse_key_to_char(val):
         return ""
 
 sense = SenseHat()
+sense.clear()
+sense.set_rotation(180)
 
 dev = InputDevice('/dev/input/event1')
 for event in dev.read_loop():
@@ -96,5 +98,4 @@ for event in dev.read_loop():
         if e.keystate == e.key_up:
             sys.stdout.write(parse_key_to_char(e.keycode))
             sys.stdout.flush()
-            #sense.show_letter(parse_key_to_char(e.keycode),text_colour=[255, 255, 255])
             sense.show_letter(parse_key_to_char(e.keycode),text_colour=[randint(0,255),randint(0,255),randint(0,255)])
